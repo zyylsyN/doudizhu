@@ -1,18 +1,11 @@
-const router = require('koa-router')()
+var router = require('koa-router')();
 
 var UserModel = require('../models/UserModel')
-
-router.prefix('/users')
-
-
+ 
 
 router.get('/', function (ctx, next) {
-  ctx.body = 'this is a users response!'
-})
-
-router.get('/bar', function (ctx, next) {
-  ctx.body = 'this is a users/bar response'
-})
+  ctx.body = 'this a users response!';
+});
 
 router.post('/zhuce',async function (ctx, next) {
   var user = new UserModel({});
@@ -28,9 +21,9 @@ router.post('/zhuce',async function (ctx, next) {
   	return;
   }catch(err){
   		let errMsg = err.message;
-  		if(errMsg.indexOf('$emailuniq')>-1){
+  		if(errMsg.indexOf('$emailuiq')>-1){
 	      ctx.body = 2;		//{type:0,msg:'email重复'};
-	    }else if(errMsg.indexOf('$nichenguniq')>-1){
+	    }else if(errMsg.indexOf('$nichenguiq')>-1){
 	      ctx.body = 3;		//{type:0,msg:'昵称重复'};
 	    }else{
 	      ctx.body = 0;		//{type:0,msg:'数据库错误'};
@@ -40,9 +33,6 @@ router.post('/zhuce',async function (ctx, next) {
 	
   ctx.body = '注册成功';
 });
-
-
-
 router.post('/login',async function (ctx, next) {
   var user = {};
   user.email = ctx.request.body['email'];
@@ -50,6 +40,7 @@ router.post('/login',async function (ctx, next) {
 
   	let rs = await UserModel.findOne(user);
   	//console.log(rs);
+  	
   	if(rs){
   		let loginbean = {};
 	  	loginbean.id=rs._id;
@@ -63,5 +54,4 @@ router.post('/login',async function (ctx, next) {
   	}
 });
 
-
-module.exports = router
+module.exports = router;

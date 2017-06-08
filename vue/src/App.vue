@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
-    <img src="./assets/12.jpg">
-    <router-view></router-view>
-  </div>
+  <el-row>
+    <el-col :span='24'>
+      <router-view></router-view>
+    </el-col>
+  </el-row>
+  <table
 </template>
 
 <script>
@@ -18,6 +20,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 3px;
 }
+html{height:100%;}
+body{height:100%;}
 </style>
